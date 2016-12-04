@@ -127,11 +127,6 @@ public class SunshineWatchFace extends CanvasWatchFaceService {
 
 		@Override
 		public void onCreate(SurfaceHolder holder) {
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			super.onCreate(holder);
 
 			setWatchFaceStyle(new WatchFaceStyle.Builder(SunshineWatchFace.this)
@@ -376,44 +371,5 @@ public class SunshineWatchFace extends CanvasWatchFaceService {
 			}
 			invalidate();
 		}
-
-		/*@Override
-		public void onDataChanged(DataEventBuffer dataEventBuffer) {
-			for (DataEvent dataEvent : dataEventBuffer) {
-				if (dataEvent.getType() == DataEvent.TYPE_CHANGED) {
-					DataMap dataMap = DataMapItem
-							.fromDataItem(dataEvent.getDataItem())
-							.getDataMap();
-					String path = dataEvent.getDataItem().getUri().getPath();
-					if (path.equals("/weather")) {
-						maxTemp = dataMap.getDouble("maxTemp");
-						minTemp = dataMap.getDouble("minTemp");
-						//weather = loadBitmapFromAsset(dataMap.getAsset("icon"));
-					}
-				}
-			}
-		}*/
-
-		/*private Bitmap loadBitmapFromAsset(Asset asset) {
-			if (asset == null) {
-				throw new IllegalArgumentException("Asset must be non-null");
-			}
-			ConnectionResult result = mGoogleApiClient
-					.blockingConnect(TIMEOUT_MS, TimeUnit.MILLISECONDS);
-			if (!result.isSuccess()) {
-				return null;
-			}
-			// convert asset into a file descriptor and block until it's ready
-			InputStream assetInputStream = Wearable.DataApi.getFdForAsset(
-					mGoogleApiClient, asset).await().getInputStream();
-			mGoogleApiClient.disconnect();
-
-			if (assetInputStream == null) {
-				Log.w(TAG, "Requested an unknown Asset.");
-				return null;
-			}
-			// decode the stream into a bitmap
-			return BitmapFactory.decodeStream(assetInputStream);
-		}*/
 	}
 }
